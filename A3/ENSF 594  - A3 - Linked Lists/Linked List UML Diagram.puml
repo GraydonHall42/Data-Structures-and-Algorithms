@@ -1,0 +1,57 @@
+@startuml
+class AnagramList [[java:AnagramList]] {
+	-sortedAnagram: String
+	-wordList: ArrayList<String>
+	+AnagramList(word: String)
+	+matches(word: String): boolean
+	+add(word: String): void
+	-sortString(inputString: String): String
+	-insertionSort(arr: char[]): void
+	+toString(): String
+	+{static} main(args: String[]): void
+}
+class ReadTextFile [[java:ReadTextFile]] {
+	-fileName: String
+	-wordList: ArrayList<String>
+	+ReadTextFile(fileName: String)
+	+getWordList(): ArrayList<String>
+	+{static} main(args: String[]): void
+}
+class "Node<T>" as Node_T_ [[java:Node]] {
+	-value: T
+	+Node(value: T)
+	+Node(value: T, n: Node)
+	+getValue(): T
+	+setValue(value: T): void
+	+setNext(next: Node): void
+	+toString(): String
+}
+
+
+class "SinglyLinkedList<T>" as SinglyLinkedList_T_ [[java:SinglyLinkedList]] {
+	-head: Node<T>
+	-tail: Node<T>
+	-size: int
+	+size(): int
+	+SinglyLinkedList()
+	+isEmpty(): boolean
+	+getHead(): Node<T>
+	+addFirst(n: T): void
+	+addLast(n: T): void
+	+remFirst(): boolean
+	+toString(): String
+}
+class AnagramListCreator [[java:AnagramListCreator]] {
+	-wordList: ArrayList<String>
+	-inputFileName: String
+	+AnagramListCreator(inputFileName: String)
+	+listCreator(): void
+	+writeOutputToFile(fileName: String): void
+	+{static} main(args: String[]): void
+}
+
+AnagramListCreator --> ReadTextFile
+AnagramListCreator "1" *-- "1" SinglyLinkedList_T_
+SinglyLinkedList_T_ "1" *-- "many" Node_T_
+Node_T_ "1" *-- "1" AnagramList
+@enduml

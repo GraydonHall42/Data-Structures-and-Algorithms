@@ -1,0 +1,79 @@
+// ******** Taken from class code ************** //
+
+public class MyStack {
+	/**
+	 * Max size of stack
+	 */
+	private int maxSize;
+
+	/**
+	 * Array to hold values of stack
+	 */
+	private char[] stackValues;
+
+	/**
+	 * Integer to keep track of top value in stack
+	 */
+	private int top;
+
+
+	/**
+	 * Constructor for basic stack object
+	 * @param s size of stack
+	 */
+	public MyStack(int s) {
+		maxSize = s;
+		stackValues = new char[maxSize];
+		top = -1;
+	}
+
+	/**
+	 * push item to top of stack
+	 * @param j item to place at top of stack
+	 */
+	public void push(char j) {
+		if (isFull()) 
+			System.out.println("Stack is full. ");
+		
+		
+		stackValues[++top] = j;  //++top is using pre-increment operator, top++ is post increment op.
+	}
+
+	/**
+	 * removes and returns top item on stack
+	 * @return top item of stack
+	 */
+	public char pop() {
+		if (isEmpty()) { 
+			System.out.println("Stack is Empty. ");
+			return 'z';
+		}
+		
+		return stackValues[top--];
+	}
+
+	/**
+	 * returns but does NOT remove top item of stack
+	 * @return top item of stack
+	 */
+	public char peek() {
+		return stackValues[top];
+	}
+
+	/**
+	 * Checks if stack is empty
+	 * @return boolean True if stack is empty
+	 */
+	public boolean isEmpty() {
+		return (top == -1);
+	}
+
+	/**
+	 * Checks if stack is full
+	 * @return boolean True if stack is full
+	 */
+	public boolean isFull() {
+		return (top == maxSize - 1);
+	}
+
+}
